@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWScript-Obfuscator", "NWScript-Obfuscator\NWScript-Obfuscator.csproj", "{D0DA8FB0-725A-4C88-86EF-6DAE0C515A18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWScript-Obfuscator.UI", "NWScript-Obfuscator.UI\NWScript-Obfuscator.UI.csproj", "{D0DA8FB0-725A-4C88-86EF-6DAE0C515A18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWScript-Obfuscator.Tests", "NWScript-Obfuscator.Tests\NWScript-Obfuscator.Tests.csproj", "{0A1D6402-95C4-477E-B7B3-65AEF1C953BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWScript_Obfuscator", "NWScript_Obfuscator\NWScript_Obfuscator.csproj", "{8FA83464-1018-4298-9CE1-312334526EAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{D0DA8FB0-725A-4C88-86EF-6DAE0C515A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0DA8FB0-725A-4C88-86EF-6DAE0C515A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0DA8FB0-725A-4C88-86EF-6DAE0C515A18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1D6402-95C4-477E-B7B3-65AEF1C953BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1D6402-95C4-477E-B7B3-65AEF1C953BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1D6402-95C4-477E-B7B3-65AEF1C953BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1D6402-95C4-477E-B7B3-65AEF1C953BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FA83464-1018-4298-9CE1-312334526EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FA83464-1018-4298-9CE1-312334526EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FA83464-1018-4298-9CE1-312334526EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FA83464-1018-4298-9CE1-312334526EAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

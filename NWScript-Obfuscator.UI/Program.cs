@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NWScript_Obfuscator.Forms;
+using NWScript_Obfuscator.UI.Forms;
 
-namespace NWScript_Obfuscator
+namespace NWScript_Obfuscator.UI
 {
     static class Program
     {

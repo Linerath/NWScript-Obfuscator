@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NWScript_Obfuscator.Properties
+namespace NWScript_Obfuscator.UI.Properties
 {
 
 

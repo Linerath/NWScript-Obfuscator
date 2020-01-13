@@ -1,8 +1,7 @@
-﻿using NWScript_Obfuscator.Services;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
-namespace NWScript_Obfuscator.Forms
+namespace NWScript_Obfuscator.UI.Forms
 {
     public partial class F_Main : Form
     {
@@ -12,13 +11,17 @@ namespace NWScript_Obfuscator.Forms
         {
             InitializeComponent();
 
-            RTB_Input.Text = @"void main()
+            RTB_Input.Text = @"
+const int TEST = 1;
+void main()
 {
   object oPC = GetPCSpeaker();
 
   string name = "" name "";
   name = ""name"";
-  string new = name;
+  string newStr = name;
+
+  int intVar = TEST;
 
   return;
 }";

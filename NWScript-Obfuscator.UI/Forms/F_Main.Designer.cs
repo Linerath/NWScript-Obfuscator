@@ -1,4 +1,4 @@
-﻿namespace NWScript_Obfuscator.Forms
+﻿namespace NWScript_Obfuscator.UI.Forms
 {
     partial class F_Main
     {
@@ -146,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 341);
+            this.ClientSize = new System.Drawing.Size(536, 328);
             this.Controls.Add(this.CB_RenameVars);
             this.Controls.Add(this.CB_RemoveWS);
             this.Controls.Add(this.B_Go);

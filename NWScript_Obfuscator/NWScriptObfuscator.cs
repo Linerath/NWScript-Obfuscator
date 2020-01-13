@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace NWScript_Obfuscator.Services
+namespace NWScript_Obfuscator
 {
     public class NWScriptObfuscator
     {
@@ -17,7 +17,7 @@ namespace NWScript_Obfuscator.Services
         public NWScriptObfuscator()
         {
             varTypes = new String[] { "int", "float", "string", "object" };
-            reservedKeywords = varTypes.Concat(new String[] { "void", "return" }).ToArray();
+            reservedKeywords = varTypes.Concat(new String[] { "void", "return", "const", "include" }).ToArray();
         }
 
         public String Obfuscate(String input, bool removeWS = true, bool renameVars = true)
@@ -64,6 +64,7 @@ namespace NWScript_Obfuscator.Services
                     if (reservedKeywords.Contains(prevWord))
                     {
                         output += ch;
+                        prevWord = "";
                         continue;
                     }
                     else
