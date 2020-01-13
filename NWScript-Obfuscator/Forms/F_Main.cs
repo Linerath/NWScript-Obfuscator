@@ -11,6 +11,17 @@ namespace NWScript_Obfuscator.Forms
         public F_Main()
         {
             InitializeComponent();
+
+            RTB_Input.Text = @"void main()
+{
+  object oPC = GetPCSpeaker();
+
+  string name = "" name "";
+  name = ""name"";
+  string new = name;
+
+  return;
+}";
         }
 
         #region Events
