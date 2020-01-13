@@ -29,7 +29,7 @@ namespace NWScript_Obfuscator.Forms
         {
             String input = RTB_Input.Text;
 
-            String output = obfuscator.Obfuscate(input);
+            String output = obfuscator.Obfuscate(input, CB_RemoveWS.Checked, CB_RenameVars.Checked);
 
             RTB_Output.Text = output;
         }

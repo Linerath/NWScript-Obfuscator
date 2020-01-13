@@ -20,13 +20,16 @@ namespace NWScript_Obfuscator.Services
             reservedKeywords = varTypes.Concat(new String[] { "void", "return" }).ToArray();
         }
 
-        public String Obfuscate(String input)
+        public String Obfuscate(String input, bool removeWS = true, bool renameVars = true)
         {
             if (String.IsNullOrWhiteSpace(input))
                 return input;
 
-            String output = RemoveWhiteSpaces(input);
-            output = RenameVariables(output);
+            String output = input;
+            if (removeWS)
+                output = RemoveWhiteSpaces(output);
+            if (renameVars)
+                output = RenameVariables(output);
 
             return output;
         }
