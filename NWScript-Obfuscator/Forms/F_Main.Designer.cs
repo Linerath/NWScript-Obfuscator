@@ -1,4 +1,4 @@
-﻿namespace NWScript_Obfuscator
+﻿namespace NWScript_Obfuscator.Forms
 {
     partial class F_Main
     {
@@ -110,7 +110,7 @@
             // loadFromFileToolStripMenuItem
             // 
             this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
-            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.loadFromFileToolStripMenuItem.Text = "Load from file...";
             this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
             // 
@@ -131,6 +131,7 @@
             this.MinimizeBox = false;
             this.Name = "F_Main";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NWScript Obfuscator";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
