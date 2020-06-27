@@ -11,19 +11,22 @@ namespace NWScript_Obfuscator.UI.Forms
         {
             InitializeComponent();
 
-            RTB_Input.Text = @"
-const int TEST = 1;
+            RTB_Input.Text = @"const int C4 = 1337;
 void main()
 {
-  object oPC = GetPCSpeaker();
+  object oPC = GetFirstPC();
+  
+  int junky = Meth(oPC);
+  
+  if (junky)
+    SpeakString(""i love Meth"");
+}
 
-  string name = "" name "";
-  name = ""name"";
-  string newStr = name;
-
-  int intVar = TEST;
-
-  return;
+int Meth(object oPC)
+{
+  int result = GetIsObjectValid(oPC);
+  
+  return result;
 }";
         }
 
@@ -32,7 +35,7 @@ void main()
         {
             String input = RTB_Input.Text;
 
-            String output = obfuscator.Obfuscate(input, CB_RemoveWS.Checked, CB_RenameVars.Checked);
+            String output = obfuscator.Obfuscate(input, CB_RemoveWS.Checked, CB_Rename.Checked);
 
             RTB_Output.Text = output;
         }

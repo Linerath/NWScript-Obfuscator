@@ -37,7 +37,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CB_RemoveWS = new System.Windows.Forms.CheckBox();
-            this.CB_RenameVars = new System.Windows.Forms.CheckBox();
+            this.CB_Rename = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,8 +119,6 @@
             // CB_RemoveWS
             // 
             this.CB_RemoveWS.AutoSize = true;
-            this.CB_RemoveWS.Checked = true;
-            this.CB_RemoveWS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CB_RemoveWS.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CB_RemoveWS.Location = new System.Drawing.Point(12, 280);
             this.CB_RemoveWS.Name = "CB_RemoveWS";
@@ -129,25 +127,25 @@
             this.CB_RemoveWS.Text = "Remove whitespaces";
             this.CB_RemoveWS.UseVisualStyleBackColor = true;
             // 
-            // CB_RenameVars
+            // CB_Rename
             // 
-            this.CB_RenameVars.AutoSize = true;
-            this.CB_RenameVars.Checked = true;
-            this.CB_RenameVars.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CB_RenameVars.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CB_RenameVars.Location = new System.Drawing.Point(12, 298);
-            this.CB_RenameVars.Name = "CB_RenameVars";
-            this.CB_RenameVars.Size = new System.Drawing.Size(130, 21);
-            this.CB_RenameVars.TabIndex = 7;
-            this.CB_RenameVars.Text = "Rename variables";
-            this.CB_RenameVars.UseVisualStyleBackColor = true;
+            this.CB_Rename.AutoSize = true;
+            this.CB_Rename.Checked = true;
+            this.CB_Rename.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CB_Rename.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CB_Rename.Location = new System.Drawing.Point(12, 298);
+            this.CB_Rename.Name = "CB_Rename";
+            this.CB_Rename.Size = new System.Drawing.Size(74, 21);
+            this.CB_Rename.TabIndex = 7;
+            this.CB_Rename.Text = "Rename";
+            this.CB_Rename.UseVisualStyleBackColor = true;
             // 
             // F_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 328);
-            this.Controls.Add(this.CB_RenameVars);
+            this.ClientSize = new System.Drawing.Size(536, 323);
+            this.Controls.Add(this.CB_Rename);
             this.Controls.Add(this.CB_RemoveWS);
             this.Controls.Add(this.B_Go);
             this.Controls.Add(this.label2);
@@ -181,7 +179,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadFromFileToolStripMenuItem;
         private System.Windows.Forms.CheckBox CB_RemoveWS;
-        private System.Windows.Forms.CheckBox CB_RenameVars;
+        private System.Windows.Forms.CheckBox CB_Rename;
     }
 }
 

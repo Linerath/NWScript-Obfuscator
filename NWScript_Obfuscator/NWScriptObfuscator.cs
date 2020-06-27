@@ -20,7 +20,7 @@ namespace NWScript_Obfuscator
             reservedKeywords = varTypes.Concat(new String[] { "void", "return", "const", "include" }).ToArray();
         }
 
-        public String Obfuscate(String input, bool removeWS = true, bool renameVars = true)
+        public String Obfuscate(String input, bool removeWS = true, bool rename = true)
         {
             if (String.IsNullOrWhiteSpace(input))
                 return input;
@@ -28,8 +28,8 @@ namespace NWScript_Obfuscator
             String output = input;
             if (removeWS)
                 output = RemoveWhiteSpaces(output);
-            if (renameVars)
-                output = RenameVariables(output);
+            if (rename)
+                output = Rename(output);
 
             return output;
         }
@@ -160,22 +160,93 @@ namespace NWScript_Obfuscator
             return output;
         }
 
+        private String Rename(String input)
+        {
+            Char[] varNameEndChars = new Char[] { ')', '=', ';' };
+
+            List<String> varNames;
+            try
+            {
+                varNames = GetVariablesNames(input);
+            }
+            catch (InvalidCodeException ex)
+            {
+                input = !String.IsNullOrWhiteSpace(ex.Message)
+                    ? $"{ERROR_INVALID_CODE}: {ex.Message}"
+                    : ERROR_INVALID_CODE;
+
+                return input;
+            }
+
+            String output = "";
+            Char[] startNewWordAfter = { ' ', '(', ')', ';', '=', '+', '-', '*', '/' };
+            Dictionary<String, String> newNames = new Dictionary<String, String>();
+            bool str = false;
+            String prevWord = "", currWord = "";
+
+            foreach (var ch in input)
+            {
+                if (ch == '"')
+                {
+                    str = !str;
+                    prevWord = "";
+                    currWord = "";
+                    output += ch;
+                    continue;
+                }
+
+                if (str)
+                {
+                    prevWord = "";
+                    currWord = "";
+                    output += ch;
+                    continue;
+                }
+
+                if (startNewWordAfter.Contains(ch))
+                {
+                    if (varNames.Contains(currWord))
+                    {
+                        if (!newNames.TryGetValue(currWord, out String newName))
+                        {
+                            newName = $"v{newNames.Count}";
+                            newNames.Add(currWord, newName);
+                        }
+
+                        output = output.Remove(output.Length - currWord.Length);
+                        output += newName;
+                    }
+
+                    prevWord = currWord;
+                    currWord = "";
+                }
+                else
+                {
+                    currWord += ch;
+                }
+
+                output += ch;
+            }
+
+            return output;
+        }
+
         private List<String> GetVariablesNames(String input)
         {
             List<String> result = new List<string>();
 
-            String varsPattern = "";
+            String varPattern = "";
             foreach (var varType in varTypes)
             {
-                if (varsPattern != "")
-                    varsPattern += "|";
+                if (varPattern != "")
+                    varPattern += "|";
 
-                varsPattern += $"({varType})";
+                varPattern += $"({varType})";
             }
 
-            varsPattern = "(" + varsPattern + ")";
+            varPattern = "(" + varPattern + ")";
 
-            var matches = Regex.Matches(input, $@"{varsPattern}\s\w+");
+            var matches = Regex.Matches(input, $@"{varPattern}\s+\w+");
 
             foreach (Match match in matches)
             {
@@ -197,6 +268,131 @@ namespace NWScript_Obfuscator
 
             return result;
         }
+
+        /*
+        private String RenameFunctions(String input)
+        {
+            //Char[] funcNameEndChars = new Char[] { '(' };
+
+            List<String> funcNames;
+            try
+            {
+                funcNames = GetFunctionsNames(input);
+            }
+            catch (InvalidCodeException ex)
+            {
+                input = !String.IsNullOrWhiteSpace(ex.Message)
+                    ? $"{ERROR_INVALID_CODE}: {ex.Message}"
+                    : ERROR_INVALID_CODE;
+
+                return input;
+            }
+
+            foreach (var funcName in funcNames)
+            {
+                String pattern = $@"{funcName}(";
+            }
+
+
+
+
+            String output = "";
+            Dictionary<String, String> newNames = new Dictionary<String, String>();
+            bool str = false;
+            String prevWord = "";
+            /*
+            foreach (var ch in input)
+            {
+                if (ch == '"')
+                {
+                    str = !str;
+                    prevWord = "";
+                    output += ch;
+                    continue;
+                }
+
+                if (str)
+                {
+                    prevWord += ch;
+                    output += ch;
+                    continue;
+                }
+
+                if (Char.IsWhiteSpace(ch) || varNameEndChars.Contains(ch))
+                {
+                    if (varNames.Contains(prevWord))
+                    {
+                        if (!newNames.TryGetValue(prevWord, out String newName))
+                        {
+                            newName = $"v{newNames.Count}";
+                            newNames.Add(prevWord, newName);
+                        }
+
+                        output = output.Remove(output.Length - prevWord.Length, prevWord.Length);
+                        output += newName;
+
+                        output += ch;
+
+                        prevWord = "";
+                        continue;
+                    }
+
+                    prevWord = "";
+                }
+                else
+                {
+                    prevWord += ch;
+                }
+
+                output += ch;
+            }
+            return output;
+        }
+
+        private List<String> GetFunctionsNames(String input)
+        {
+            List<String> result = new List<String>();
+
+            String funcPattern = "";
+            foreach (var varType in varTypes)
+            {
+                if (funcPattern != "")
+                    funcPattern += "|";
+
+                funcPattern += $"({varType})";
+            }
+            if (funcPattern != "")
+                funcPattern += "|";
+            funcPattern += "(void)";
+
+            funcPattern = $@"({funcPattern})\s+\w+\(";
+
+            var matches = Regex.Matches(input, funcPattern);
+
+            foreach (Match match in matches)
+            {
+                String funcName = match.Value;
+
+                try
+                {
+                    funcName = funcName.Substring(funcName.LastIndexOf(' ') + 1);
+                    funcName = funcName.Remove(funcName.IndexOf('('));
+                    if (funcName == "main")
+                        continue;
+                    result.Add(funcName);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    throw new InvalidCodeException();
+                }
+
+                if (reservedKeywords.Contains(funcName))
+                    throw new InvalidCodeException("reserved keyword variable name");
+            }
+
+            return result;
+        }
+    */
     }
 
     [System.Serializable]
